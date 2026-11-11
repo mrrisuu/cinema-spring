@@ -21,7 +21,7 @@ public class Movie {
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name ="genre_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name ="genre_id", nullable = true)
     private Genre genre;
 }

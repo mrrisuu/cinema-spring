@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "genres")
@@ -22,6 +23,8 @@ public class Genre {
 
     private String description;
 
-    @OneToMany(mappedBy = "genre")
-    private List<Movie> movies;
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "genre")
+    private List<Movie> movies = new ArrayList<>();
 }
