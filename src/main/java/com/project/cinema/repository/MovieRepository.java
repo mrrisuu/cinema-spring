@@ -17,4 +17,6 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     WHERE m.genre.id = :id
     """)
     Page<Movie> findByGenreId(Pageable pageable, Integer id);
+
+    boolean existsByNameIgnoreCase(String name);
 }

@@ -3,14 +3,13 @@ package com.project.cinema.controller;
 import com.project.cinema.dto.GenreRequest;
 import com.project.cinema.dto.GenreResponse;
 import com.project.cinema.dto.MovieResponse;
-import com.project.cinema.entity.Genre;
 import com.project.cinema.service.GenreService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +39,7 @@ public class GenreController {
 
     @PostMapping
     public ResponseEntity<GenreResponse> createGenre(
-            @RequestBody GenreRequest request){
+            @Valid @RequestBody GenreRequest request){
         GenreResponse response = genreService.createGenre(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -48,7 +47,7 @@ public class GenreController {
     @PatchMapping("/{id}")
     public ResponseEntity<GenreResponse> updateGenre(
             @PathVariable @RequestParam Integer id,
-            @RequestBody GenreRequest request
+            @Valid @RequestBody GenreRequest request
     ){
         GenreResponse response = genreService.updateGenre(id, request);
         return ResponseEntity.ok(response);

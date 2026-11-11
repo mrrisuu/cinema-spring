@@ -2,6 +2,7 @@ package com.project.cinema.controller;
 
 import com.project.cinema.dto.MovieRequest;
 import com.project.cinema.dto.MovieResponse;
+import com.project.cinema.dto.MovieSearchResponse;
 import com.project.cinema.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -63,5 +64,23 @@ public class MovieController {
         MovieResponse response = movieService.showMovie(id);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<MovieSearchResponse> searchOmdb(
+            @RequestParam String title,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(required = false) String year,
+            @RequestParam(required = false) String type
+    ){
+        return ResponseEntity.ok(movieService.searchOmdb(title, page, year, type));
+    }
+
+    @PostMapping("/import")
+    public ResponseEntity<MovieResponse> importMovie(
+            @RequestParam String imdbId
+    ){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(movieService.importFromOmdb(imdbId));
     }
 }

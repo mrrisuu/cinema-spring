@@ -19,6 +19,7 @@ public class Movie {
     @Column(name = "movie_name")
     private String name;
 
+    @Column(length = 1000)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)

@@ -53,6 +53,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/api/v1/genres").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PATCH,"/api/v1/genres/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/genres/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/movies/import").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/movies/search").permitAll()
                         .anyRequest().authenticated()
                 )
 
