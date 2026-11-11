@@ -4,7 +4,7 @@ services:
     environment:
       POSTGRES_DB: cinema
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: indocyber
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5433:5432"   # 5433 di komputer Anda, supaya tidak bentrok dengan Postgres lokal
     healthcheck:
@@ -22,5 +22,6 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/cinema
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: indocyber
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
       OMDB_API_KEY: ${OMDB_API_KEY}
