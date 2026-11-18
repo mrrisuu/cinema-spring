@@ -28,7 +28,7 @@ public class MovieController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<MovieResponse> updateMovie(
-            @PathVariable @RequestParam Integer id,
+            @PathVariable Integer id,
             @RequestBody MovieRequest request
     ){
         MovieResponse movieResponse = movieService.updateMovie(id, request);
@@ -50,7 +50,7 @@ public class MovieController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovie(
-            @PathVariable @RequestParam Integer id
+            @PathVariable Integer id
     ){
         movieService.deleteMovie(id);
 
@@ -59,22 +59,22 @@ public class MovieController {
 
     @GetMapping("/{id}")
     public ResponseEntity<MovieResponse> showMovie(
-            @PathVariable @RequestParam Integer id
+            @PathVariable Integer id
     ){
         MovieResponse response = movieService.showMovie(id);
 
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<MovieSearchResponse> searchOmdb(
-            @RequestParam String title,
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(required = false) String year,
-            @RequestParam(required = false) String type
-    ){
-        return ResponseEntity.ok(movieService.searchOmdb(title, page, year, type));
-    }
+        @GetMapping("/search")
+        public ResponseEntity<MovieSearchResponse> searchOmdb(
+                @RequestParam String title,
+                @RequestParam(defaultValue = "1") int page,
+                @RequestParam(required = false) String year,
+                @RequestParam(required = false) String type
+        ){
+            return ResponseEntity.ok(movieService.searchOmdb(title, page, year, type));
+        }
 
     @PostMapping("/import")
     public ResponseEntity<MovieResponse> importMovie(

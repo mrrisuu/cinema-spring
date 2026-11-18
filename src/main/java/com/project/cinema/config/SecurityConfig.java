@@ -45,7 +45,8 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/api/v1/auth/**"
+                                "/api/v1/auth/**",
+                                "/api/v1/movies/search"
                         ).permitAll()
                         .requestMatchers(HttpMethod.POST,"/api/v1/movies").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/api/v1/movies/{id}").hasRole("ADMIN")
@@ -54,7 +55,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH,"/api/v1/genres/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/genres/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/v1/movies/import").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/movies/search").permitAll()
                         .anyRequest().authenticated()
                 )
 

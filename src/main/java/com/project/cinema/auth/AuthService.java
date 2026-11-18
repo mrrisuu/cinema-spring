@@ -2,7 +2,6 @@ package com.project.cinema.auth;
 
 import com.project.cinema.dto.LoginRequest;
 import com.project.cinema.dto.LoginResponse;
-import com.project.cinema.repository.UserRepository;
 import com.project.cinema.security.CustomUserDetail;
 import com.project.cinema.security.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,6 @@ public class AuthService {
 
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-    private final UserRepository userRepository;
 
     public LoginResponse login(LoginRequest request) {
 
